@@ -5,7 +5,7 @@ import MovieCard from './MovieCard';
 
 const Movies = () => {
   const moviesContext = useContext(MoviesContext);
-  const { getMovies, searchMovies, movies } = moviesContext;
+  const { getMovies, searchMovies, movies, sortMovies } = moviesContext;
 
   useEffect(() => {
     getMovies();
@@ -21,9 +21,16 @@ const Movies = () => {
     }
   };
 
+  const handleSortMovies = (sort) => {
+    sortMovies();
+  };
+
   return (
     <Fragment>
-      <SearchForm handleSearch={handleSearch} />
+      <SearchForm
+        handleSearch={handleSearch}
+        handleSortMovies={handleSortMovies}
+      />
       <div className="movies">
         {movies.map((movie) => (
           <MovieCard key={movie._id} movie={movie} />

@@ -20,7 +20,6 @@ const MoviesState = (props) => {
   const getMovies = async () => {
     try {
       const res = await axios.get(`${api}/movies`);
-      // const testData = res.data.movies.slice(460, 470);
       dispatch({
         type: GET_MOVIES,
         payload: res.data.movies,
@@ -28,6 +27,14 @@ const MoviesState = (props) => {
     } catch (err) {
       console.log('Something went wrong');
     }
+  };
+
+  const sortMovies = () => {
+    let reverseMovies = state.movies.reverse();
+    dispatch({
+      type: GET_MOVIES,
+      payload: reverseMovies,
+    });
   };
 
   const searchMovies = async (search) => {
@@ -65,6 +72,7 @@ const MoviesState = (props) => {
         getMovies,
         searchMovies,
         getMovie,
+        sortMovies,
       }}
     >
       {props.children}

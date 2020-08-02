@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 
-const SearchForm = ({ handleSearch }) => {
+const SearchForm = ({ handleSearch, handleSortMovies }) => {
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('down');
 
   const handleSort = (e) => {
     if (e.target.className.includes('fa-sort-numeric-down')) {
-      setSort('down');
+      if (sort === 'up') {
+        setSort('down');
+        handleSortMovies();
+      }
     } else if (e.target.className.includes('fa-sort-numeric-up-alt')) {
-      setSort('up');
+      if (sort === 'down') {
+        setSort('up');
+        handleSortMovies();
+      }
     }
   };
 
