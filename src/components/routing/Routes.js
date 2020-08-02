@@ -5,9 +5,11 @@ import Movies from '../movies/Movies';
 const Routes = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/movies" component={Movies} />
-      </Switch>
+      <div className="container">
+        <Switch>
+          <Route exact path="/movies" component={Movies} />
+        </Switch>
+      </div>
     </Router>
   );
 };

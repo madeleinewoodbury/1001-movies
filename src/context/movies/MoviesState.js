@@ -18,9 +18,9 @@ const MoviesState = (props) => {
   const [state, dispatch] = useReducer(MoviesReducer, initialState);
 
   const getMovies = async () => {
-    console.log('bah');
     try {
       const res = await axios.get(`${api}/movies`);
+      // const testData = res.data.movies.slice(460, 470);
       dispatch({
         type: GET_MOVIES,
         payload: res.data.movies,
