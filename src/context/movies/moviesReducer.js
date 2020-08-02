@@ -9,6 +9,12 @@ export default (state, action) => {
         movies: payload,
         loading: false,
       };
+    case GET_MOVIE:
+      return {
+        ...state,
+        movie: payload,
+        loading: false,
+      };
     default:
       return state;
   }

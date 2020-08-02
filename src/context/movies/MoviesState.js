@@ -30,6 +30,30 @@ const MoviesState = (props) => {
     }
   };
 
+  const searchMovies = async (search) => {
+    try {
+      const res = await axios.get(`${api}/movies/search/${search}`);
+      dispatch({
+        type: GET_MOVIES,
+        payload: res.data.movies,
+      });
+    } catch (err) {
+      console.log('Something went wrong');
+    }
+  };
+
+  const getMovie = async (movieId) => {
+    try {
+      const res = await axios.get(`${api}/movies/${movieId}`);
+      dispatch({
+        type: GET_MOVIE,
+        payload: res.data.movie,
+      });
+    } catch (err) {
+      console.log('Something went wrong');
+    }
+  };
+
   return (
     <MoviesContext.Provider
       value={{
@@ -39,6 +63,8 @@ const MoviesState = (props) => {
         error: state.error,
         message: state.message,
         getMovies,
+        searchMovies,
+        getMovie,
       }}
     >
       {props.children}

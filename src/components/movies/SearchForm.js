@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-const SearchForm = () => {
+const SearchForm = ({ handleSearch }) => {
   const [search, setSearch] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Searching for ' + search);
+    handleSearch(search);
   };
   return (
     <div className="form-container">
