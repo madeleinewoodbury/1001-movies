@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import AuthContext from '../../context/auth/authContext';
+import { Link, Redirect } from 'react-router-dom';
 
 const Register = () => {
+  const authContext = useContext(AuthContext);
+  const { register, isAuthenticated } = authContext;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,9 +21,13 @@ const Register = () => {
     if (formData.password !== formData.password2) {
       alert('Passwords must match');
     } else {
-      console.log(formData);
+      register(formData);
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="auth-form">

@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import AuthContext from '../../context/auth/authContext';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Login = () => {
   const authContext = useContext(AuthContext);
-  const { login } = authContext;
+  const { login, isAuthenticated } = authContext;
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -18,6 +18,10 @@ const Login = () => {
     e.preventDefault(e);
     login(formData);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="auth-form">

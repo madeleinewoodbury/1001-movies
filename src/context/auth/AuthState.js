@@ -2,7 +2,13 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import AuthContext from './authContext';
 import AuthReducer from './authReducer';
-import { AUTH_ERROR, USER_LOADED, LOGIN_FAIL, LOGIN_SUCCESS } from '../types';
+import {
+  AUTH_ERROR,
+  USER_LOADED,
+  LOGIN_SUCCESS,
+  REGISTER_SUCCESS,
+  LOGOUT,
+} from '../types';
 
 const api = 'http://localhost:5000/api/v1';
 
@@ -51,11 +57,36 @@ const AuthState = (props) => {
       loadUser();
     } catch (err) {
       dispatch({
-        type: LOGIN_FAIL,
+        type: AUTH_ERROR,
         payload: 'Invalid Credentials',
       });
     }
   };
+
+  // Register User
+  const register = async (formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.post(`${api}/users`, formData, config);
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      });
+
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: AUTH_ERROR,
+      });
+    }
+  };
+
+  // Logout
+  const logout = () => dispatch({ type: LOGOUT });
 
   return (
     <AuthContext.Provider
@@ -65,8 +96,10 @@ const AuthState = (props) => {
         loading: state.loading,
         user: state.user,
         error: state.error,
-        login,
         loadUser,
+        login,
+        register,
+        logout,
       }}
     >
       {props.children}

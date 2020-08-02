@@ -1,4 +1,10 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADED, AUTH_ERROR } from '../types';
+import {
+  LOGIN_SUCCESS,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGOUT,
+  REGISTER_SUCCESS,
+} from '../types';
 
 export default (state, action) => {
   const { type, payload } = action;
@@ -12,6 +18,7 @@ export default (state, action) => {
         user: payload,
       };
     case LOGIN_SUCCESS:
+    case REGISTER_SUCCESS:
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -19,8 +26,8 @@ export default (state, action) => {
         isAuthenticated: true,
         loading: false,
       };
-    case LOGIN_FAIL:
     case AUTH_ERROR:
+    case LOGOUT:
       localStorage.removeItem('token');
       return {
         ...state,

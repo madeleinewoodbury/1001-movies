@@ -93,6 +93,7 @@ img {
   cursor: pointer;
 }
 
+.navbar li:hover,
 .navbar a:hover {
   color: var(--light-color);
 }
