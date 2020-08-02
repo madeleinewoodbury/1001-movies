@@ -1,5 +1,6 @@
 :root {
   --primary-color: #ffbb00;
+  --secondary-color: #0030ce;
   --dark-color: #494844;
   --light-color: #f4f4f4;
   --danger-color: #c52031;
@@ -41,6 +42,24 @@ img {
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary-color);
+  color: black;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  color: white;
 }
 
 /* Navbar */
@@ -119,6 +138,30 @@ button {
   font: inherit;
 }
 
+/* Login and Register */
+.auth-form {
+  width: 80%;
+  margin: 1rem auto;
+}
+
+.auth-form h1 {
+  font-size: 2.5rem;
+}
+
+.auth-form p {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.auth-form p a {
+  color: var(--secondary-color);
+}
+
+.auth-form p a:hover {
+  color: var(--primary-color);
+}
+
+/* Search form */
 .search-form {
   display: flex;
   justify-content: center;
