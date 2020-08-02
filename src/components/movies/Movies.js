@@ -1,5 +1,6 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, Fragment } from 'react';
 import MoviesContext from '../../context/movies/moviesContext';
+import SearchForm from './SearchForm';
 import MovieCard from './MovieCard';
 
 const Movies = () => {
@@ -12,11 +13,14 @@ const Movies = () => {
     // eslint-disable-next-line
   }, []);
   return (
-    <div className="movies">
-      {movies.map((movie) => (
-        <MovieCard key={movie._id} movie={movie} />
-      ))}
-    </div>
+    <Fragment>
+      <SearchForm />
+      <div className="movies">
+        {movies.map((movie) => (
+          <MovieCard key={movie._id} movie={movie} />
+        ))}
+      </div>
+    </Fragment>
   );
 };
 

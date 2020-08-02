@@ -11,6 +11,56 @@
   padding: 0 2rem;
 }
 
+/* Forms */
+.form-container {
+  width: 60%;
+  padding-top: 1rem;
+  margin: 1rem auto;
+}
+
+.form .form-group {
+  margin: 1.2rem 0;
+  display: flex;
+}
+
+.form .form-text {
+  display: block;
+  margin-top: 0.3rem;
+  color: #888;
+}
+
+.form input[type='text'],
+.form input[type='email'],
+.form input[type='password'],
+.form input[type='number'],
+.form select,
+.form textarea {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form input[type='text'].search-input {
+  border-right: transparent;
+}
+
+.form input[type='submit'],
+button {
+  font: inherit;
+}
+
+.search-btn {
+  margin-left: 0;
+  padding: 0.4rem 1rem;
+  border: 1px solid #ccc;
+  border-left: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
 /* Movies */
 .movies {
   display: flex;
