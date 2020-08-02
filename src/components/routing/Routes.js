@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Navbar from '../layout/Navbar';
 import Movies from '../movies/Movies';
 import Movie from '../movies/Movie';
 
 const Routes = () => {
   return (
     <Router>
+      <Navbar />
       <div className="container">
         <Switch>
           <Route exact path="/movies" component={Movies} />
