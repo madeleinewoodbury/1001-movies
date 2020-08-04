@@ -39,7 +39,7 @@ img {
 
 .container {
   max-width: 1200px;
-  margin: auto;
+  margin: 10vh auto 0 auto;
   overflow: hidden;
   padding: 0 2rem;
 }
@@ -62,6 +62,36 @@ img {
   color: white;
 }
 
+.scroll {
+  position: fixed;
+  top: 15vh;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity ease-in-out 1s;
+}
+
+.scroll.hide {
+  opacity: 0;
+}
+
+.scroll.show {
+  opacity: 1;
+}
+
+.scroll i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: font-size ease-in-out 0.3s;
+}
+
+.scroll i:hover {
+  font-size: 1.7rem;
+}
+
 /* Navbar */
 .navbar {
   display: flex;
@@ -73,6 +103,8 @@ img {
   height: 10vh;
   background-color: var(--primary-color);
   opacity: 0.9;
+  position: fixed;
+  top: 0;
 }
 
 .navbar .brand i {
@@ -216,13 +248,11 @@ button {
 
 /* Movies */
 .movies {
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center; */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   margin: 2rem auto;
   max-width: 1000px;
+  position: relative;
 }
 
 .movie-card {
