@@ -311,6 +311,24 @@ button {
   margin-top: 1rem;
 }
 
+.movie .watched-btn {
+  background-color: var(--light-color);
+  width: 150px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  margin-top: 3rem;
+  cursor: pointer;
+}
+
+.movie .watched-btn.watched {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.movie .watched-btn.unwatched {
+  color: rgba(0, 0, 0, 0.6);
+}
+
 .movie h1 {
   font-size: 3rem;
 }

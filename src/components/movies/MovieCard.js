@@ -12,7 +12,7 @@ const MovieCard = ({
       e.target.classList.contains('ribbon') ||
       e.target.classList.contains('fa-check')
     ) {
-      handleUpdateWatched(movie._id);
+      handleUpdateWatched(movie.movieId);
     }
   };
   return (

@@ -1,18 +1,36 @@
-import React, { useContext, useEffect, Fragment } from 'react';
+import React, { useState, useContext, useEffect, Fragment } from 'react';
 import MoviesContext from '../../context/movies/moviesContext';
+import AuthContext from '../../context/auth/authContext';
 import tomato from '../../img/tomato.png';
 import imdb from '../../img/imdb-logo-transparent.png';
 import metacritic from '../../img/metacritic.png';
 
 const Movie = ({ match }) => {
   const moviesContext = useContext(MoviesContext);
+  const authContext = useContext(AuthContext);
   const { getMovie, movie, loading } = moviesContext;
+  const { isAuthenticated, updateWatched, user } = authContext;
+  const [watched, setWatched] = useState(false);
 
   useEffect(() => {
     getMovie(match.params.id);
+    if (user !== null) {
+      if (
+        user.watched.filter((film) => film.movieId === match.params.id).length >
+        0
+      ) {
+        setWatched(true);
+      } else {
+      }
+    }
 
     // eslint-disable-next-line
   }, []);
+
+  const handleClick = (e) => {
+    updateWatched(match.params.id);
+    setWatched(!watched);
+  };
 
   const getRatings = () => {
     let ratings = movie.Ratings.map((rating, id) => (
@@ -82,6 +100,18 @@ const Movie = ({ match }) => {
                 </div>
               </div>
             </Fragment>
+          )}
+          {isAuthenticated && (
+            <div onClick={(e) => handleClick()}>
+              <div
+                className={
+                  watched ? 'watched-btn watched' : 'watched-btn unwatched'
+                }
+              >
+                {watched ? 'Watched' : 'Not Watched'}{' '}
+                <i className={watched ? 'fas fa-check' : 'fas fa-times'}></i>
+              </div>
+            </div>
           )}
         </Fragment>
       )}
