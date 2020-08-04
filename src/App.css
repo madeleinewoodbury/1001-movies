@@ -1,7 +1,7 @@
 :root {
   --primary-color: #ffbb00;
   --secondary-color: #0030ce;
-  --dark-color: #494844;
+  --dark-color: #3f3d34;
   --light-color: #f4f4f4;
   --danger-color: #c52031;
   --success-color: #28a745;
@@ -201,23 +201,79 @@ button {
   outline: none;
 }
 
-/* Movies */
-.movies {
-  display: flex;
-  flex-wrap: wrap;
+/* Dashboard */
+.dashboard {
   margin-top: 2rem;
 }
 
+.dashboard h1 {
+  font-size: 2.5rem;
+}
+
+.dashboard .lead {
+  font-size: 1.5rem;
+}
+
+/* Movies */
+.movies {
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center; */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 2rem auto;
+  max-width: 1000px;
+}
+
 .movie-card {
-  width: 20%;
+  width: 180px;
+  margin: 10px 10px;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   text-align: center;
 }
 
 .movie-card img {
-  max-width: 150px;
+  width: 100%;
+  height: auto;
+}
+
+.movie-card a {
+  font-size: 1.2rem;
+  color: var(--dark-color);
+}
+
+.movie-card a:hover {
+  color: var(--primary-color);
+}
+
+.movie-card .fa-check {
+  position: absolute;
+  color: white;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.movie-card .ribbon {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  width: 0px;
+  height: 50px;
+  background-color: transparent;
+  border: solid 20px rgba(255, 255, 255, 0.7);
+  border-bottom: solid 15px transparent;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  cursor: pointer;
+}
+
+.movie-card .ribbon.watched {
+  border: solid 20px rgba(40, 167, 69, 1);
+  border-bottom: solid 15px transparent;
 }
 
 /* Movie */

@@ -1,15 +1,17 @@
 import React, { useEffect, useContext, Fragment } from 'react';
 import MoviesContext from '../../context/movies/moviesContext';
+import AuthContext from '../../context/auth/authContext';
 import SearchForm from './SearchForm';
 import MovieCard from './MovieCard';
 
 const Movies = () => {
   const moviesContext = useContext(MoviesContext);
+  const authContext = useContext(AuthContext);
   const { getMovies, searchMovies, movies, sortMovies } = moviesContext;
+  const { isAuthenticated, user, updateWatched } = authContext;
 
   useEffect(() => {
     getMovies();
-
     // eslint-disable-next-line
   }, []);
 
@@ -25,6 +27,10 @@ const Movies = () => {
     sortMovies();
   };
 
+  const handleUpdateWatched = (movieId) => {
+    updateWatched(movieId);
+  };
+
   return (
     <Fragment>
       <SearchForm
@@ -33,7 +39,13 @@ const Movies = () => {
       />
       <div className="movies">
         {movies.map((movie) => (
-          <MovieCard key={movie._id} movie={movie} />
+          <MovieCard
+            key={movie._id}
+            movie={movie}
+            isAuthenticated={isAuthenticated}
+            watched={user && user.watched}
+            handleUpdateWatched={handleUpdateWatched}
+          />
         ))}
       </div>
     </Fragment>

@@ -4,6 +4,7 @@ import {
   AUTH_ERROR,
   LOGOUT,
   REGISTER_SUCCESS,
+  UPDATE_WATCHED,
 } from '../types';
 
 export default (state, action) => {
@@ -37,6 +38,7 @@ export default (state, action) => {
         user: null,
         error: payload,
       };
+    case UPDATE_WATCHED:
     default:
       return state;
   }

@@ -8,6 +8,7 @@ import {
   LOGIN_SUCCESS,
   REGISTER_SUCCESS,
   LOGOUT,
+  UPDATE_WATCHED,
 } from '../types';
 
 const api = 'http://localhost:5000/api/v1';
@@ -85,6 +86,24 @@ const AuthState = (props) => {
     }
   };
 
+  const updateWatched = async (movieId) => {
+    const config = {
+      headers: {
+        'x-auth-token': state.token,
+      },
+    };
+    try {
+      const res = await axios.get(`${api}/movies/users/${movieId}`, config);
+      loadUser();
+      dispatch({
+        type: UPDATE_WATCHED,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log('Something went wrong');
+    }
+  };
+
   // Logout
   const logout = () => dispatch({ type: LOGOUT });
 
@@ -100,6 +119,7 @@ const AuthState = (props) => {
         login,
         register,
         logout,
+        updateWatched,
       }}
     >
       {props.children}
