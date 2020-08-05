@@ -16,6 +16,9 @@ const Navbar = () => {
         <NavLink to="/movies">Movies</NavLink>
       </li>
       <li>
+        <NavLink to="/random">Random</NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard">{user && user.name.split(' ')[0]}</NavLink>
       </li>
 
@@ -30,6 +33,9 @@ const Navbar = () => {
     <ul>
       <li>
         <NavLink to="/movies">Movies</NavLink>
+      </li>
+      <li>
+        <NavLink to="/random">Random</NavLink>
       </li>
       <li>
         <NavLink to="/login">Sign In</NavLink>

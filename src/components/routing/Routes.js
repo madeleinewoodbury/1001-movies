@@ -6,6 +6,7 @@ import Register from '../auth/Register';
 import Dashboard from '../dashboard/Dashboard';
 import Movies from '../movies/Movies';
 import Movie from '../movies/Movie';
+import Random from '../movies/Random';
 
 const Routes = () => {
   return (
@@ -18,6 +19,7 @@ const Routes = () => {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/movies" component={Movies} />
           <Route exact path="/movies/:id" component={Movie} />
+          <Route exact path="/random" component={Random} />
         </Switch>
       </div>
     </Router>

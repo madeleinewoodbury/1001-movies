@@ -4,16 +4,21 @@ import AuthContext from '../../context/auth/authContext';
 import tomato from '../../img/tomato.png';
 import imdb from '../../img/imdb-logo-transparent.png';
 import metacritic from '../../img/metacritic.png';
+import filmPlacholder from '../../img/film-placeholder.png';
 
 const Movie = ({ match }) => {
   const moviesContext = useContext(MoviesContext);
   const authContext = useContext(AuthContext);
-  const { getMovie, movie, loading } = moviesContext;
+  const { getMovie, movie, loading, clearMovie } = moviesContext;
   const { isAuthenticated, updateWatched, user } = authContext;
   const [watched, setWatched] = useState(false);
 
   useEffect(() => {
-    getMovie(match.params.id);
+    const clear = async () => {
+      await clearMovie();
+      getMovie(match.params.id);
+    };
+    clear();
     if (user !== null) {
       if (
         user.watched.filter((film) => film.movieId === match.params.id).length >
@@ -33,29 +38,31 @@ const Movie = ({ match }) => {
   };
 
   const getRatings = () => {
-    let ratings = movie.Ratings.map((rating, id) => (
-      <div className="rating" key={id}>
-        {rating.Source === 'Internet Movie Database' && (
-          <img className="imdb" src={imdb} alt="imdb" />
-        )}
-        {rating.Source === 'Rotten Tomatoes' && (
-          <img className="tomato" src={tomato} alt="rotten tomato" />
-        )}
-        {rating.Source === 'Metacritic' && (
-          <img className="metacritic" src={metacritic} alt="rotten tomato" />
-        )}
-        <span>{rating.Value}</span>
-      </div>
-    ));
+    if (movie.Ratings !== undefined) {
+      let ratings = movie.Ratings.map((rating, id) => (
+        <div className="rating" key={id}>
+          {rating.Source === 'Internet Movie Database' && (
+            <img className="imdb" src={imdb} alt="imdb" />
+          )}
+          {rating.Source === 'Rotten Tomatoes' && (
+            <img className="tomato" src={tomato} alt="rotten tomato" />
+          )}
+          {rating.Source === 'Metacritic' && (
+            <img className="metacritic" src={metacritic} alt="rotten tomato" />
+          )}
+          <span>{rating.Value}</span>
+        </div>
+      ));
 
-    return ratings;
+      return ratings;
+    }
   };
 
   return (
     <div className="movie">
       {!loading && (
         <Fragment>
-          {movie && (
+          {movie !== null && (
             <Fragment>
               <h1 className="title">
                 {movie.Title} ({movie.Year})
@@ -73,7 +80,14 @@ const Movie = ({ match }) => {
               </div>
               <div className="content">
                 <div className="poster">
-                  <img src={movie.Poster} alt={`${movie.Title} poster`} />
+                  <img
+                    src={movie.Poster}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = filmPlacholder;
+                    }}
+                    alt={`${movie.Title} poster`}
+                  />
                   <div className="ratings">{getRatings()}</div>
                 </div>
                 <div className="about">

@@ -44,6 +44,11 @@ img {
   padding: 0 2rem;
 }
 
+.page-container {
+  margin-top: 2rem;
+  max-width: 1000px;
+}
+
 .btn {
   display: inline-block;
   background: var(--primary-color);
@@ -60,6 +65,14 @@ img {
 .btn:hover {
   opacity: 0.9;
   color: white;
+}
+
+.title {
+  font-size: 2.5rem;
+}
+
+.lead {
+  font-size: 1.5rem;
 }
 
 .scroll {
@@ -233,19 +246,6 @@ button {
   outline: none;
 }
 
-/* Dashboard */
-.dashboard {
-  margin-top: 2rem;
-}
-
-.dashboard h1 {
-  font-size: 2.5rem;
-}
-
-.dashboard .lead {
-  font-size: 1.5rem;
-}
-
 /* Movies */
 .movies {
   display: grid;
@@ -265,7 +265,7 @@ button {
 }
 
 .movie-card img {
-  width: 100%;
+  max-width: 200px;
   height: auto;
 }
 
@@ -352,6 +352,10 @@ button {
   margin-right: 1rem;
 }
 
+.movie .content .poster img {
+  max-width: 200px;
+}
+
 .movie .poster .ratings .rating img.imdb {
   width: 40px;
 }
@@ -391,4 +395,9 @@ button {
 
 .movie .content .about .credits p {
   font-size: 1.1rem;
+}
+
+/* Random */
+.random .btn {
+  margin-top: 1rem;
 }

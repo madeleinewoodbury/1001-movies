@@ -1,5 +1,6 @@
 export const GET_MOVIES = 'GET_MOVIES';
 export const GET_MOVIE = 'GET_MOVIE';
+export const CLEAR_MOVIE = 'CLEAR_MOVIE';
 export const UPDATE_WATCHED = 'UPDATE_WATCHED';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const USER_LOADED = 'USER_LOADED';

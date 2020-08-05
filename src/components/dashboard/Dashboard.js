@@ -14,10 +14,10 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="dashboard">
+    <div className="dashboard page-container">
       {user && (
         <Fragment>
-          <h1>Hi {user.name}</h1>
+          <h1 className="title">Hi {user.name}</h1>
           <p className="lead">
             You have watched {user.watched.length} out of 1001 movies
           </p>

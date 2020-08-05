@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import MoviesContext from './moviesContext';
 import MoviesReducer from './moviesReducer';
-import { GET_MOVIES, GET_MOVIE } from '../types';
+import { GET_MOVIES, GET_MOVIE, CLEAR_MOVIE } from '../types';
 
 const api = 'http://localhost:5000/api/v1';
 
@@ -50,6 +50,7 @@ const MoviesState = (props) => {
   };
 
   const getMovie = async (movieId) => {
+    clearMovie();
     try {
       const res = await axios.get(`${api}/movies/${movieId}`);
       dispatch({
@@ -60,6 +61,20 @@ const MoviesState = (props) => {
       console.log('Something went wrong');
     }
   };
+
+  const getRandomMovie = (watched) => {
+    clearMovie();
+    if (watched.length < 1) {
+      let random = Math.floor(Math.random() * Math.floor(state.movies.length));
+      let movie = state.movies[random];
+      dispatch({
+        type: GET_MOVIE,
+        payload: movie,
+      });
+    }
+  };
+
+  const clearMovie = () => dispatch({ type: CLEAR_MOVIE });
 
   return (
     <MoviesContext.Provider
@@ -73,6 +88,8 @@ const MoviesState = (props) => {
         searchMovies,
         getMovie,
         sortMovies,
+        getRandomMovie,
+        clearMovie,
       }}
     >
       {props.children}
