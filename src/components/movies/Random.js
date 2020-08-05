@@ -1,11 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MovieContext from '../../context/movies/moviesContext';
+import AuthContext from '../../context/auth/authContext';
 import filmPlacholder from '../../img/film-placeholder.png';
 
 const Random = () => {
   const movieContext = useContext(MovieContext);
+  const authContext = useContext(AuthContext);
   const { getRandomMovie, getMovies, movie, clearMovie } = movieContext;
+  const { user } = authContext;
 
   useEffect(() => {
     clearMovie();
@@ -16,6 +19,9 @@ const Random = () => {
 
   const handleClick = () => {
     let watched = [];
+    if (user !== null) {
+      watched = user.watched;
+    }
     getRandomMovie(watched);
   };
   return (

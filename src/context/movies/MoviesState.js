@@ -64,14 +64,32 @@ const MoviesState = (props) => {
 
   const getRandomMovie = (watched) => {
     clearMovie();
-    if (watched.length < 1) {
+
+    let movie;
+    const getRandom = () => {
       let random = Math.floor(Math.random() * Math.floor(state.movies.length));
-      let movie = state.movies[random];
-      dispatch({
-        type: GET_MOVIE,
-        payload: movie,
-      });
+      return state.movies[random];
+    };
+
+    if (watched.length < 1) {
+      movie = getRandom();
+    } else {
+      let watchedBefore = true;
+      while (watchedBefore) {
+        movie = getRandom();
+        if (
+          watched.filter(
+            (watchedMovie) => watchedMovie.movieId === movie.movieId
+          ).length === 0
+        ) {
+          watchedBefore = false;
+        }
+      }
     }
+    dispatch({
+      type: GET_MOVIE,
+      payload: movie,
+    });
   };
 
   const clearMovie = () => dispatch({ type: CLEAR_MOVIE });
