@@ -21,8 +21,7 @@ const Movie = ({ match }) => {
     clear();
     if (user !== null) {
       if (
-        user.watched.filter((film) => film.movieId === match.params.id).length >
-        0
+        user.watched.filter((film) => film._id === match.params.id).length > 0
       ) {
         setWatched(true);
       } else {
@@ -33,13 +32,13 @@ const Movie = ({ match }) => {
   }, []);
 
   const handleClick = (e) => {
-    updateWatched(match.params.id);
+    updateWatched(movie.movieId);
     setWatched(!watched);
   };
 
   const getRatings = () => {
-    if (movie.Ratings !== undefined) {
-      let ratings = movie.Ratings.map((rating, id) => (
+    if (movie.ratings !== undefined) {
+      let ratings = movie.ratings.map((rating, id) => (
         <div className="rating" key={id}>
           {rating.Source === 'Internet Movie Database' && (
             <img className="imdb" src={imdb} alt="imdb" />
@@ -65,50 +64,50 @@ const Movie = ({ match }) => {
           {movie !== null && (
             <Fragment>
               <h1 className="title">
-                {movie.Title} ({movie.Year})
+                {movie.title} ({movie.year})
               </h1>
               <div className="info">
-                <span className="rating">{movie.Rated}</span>
-                <span className="runtime">{movie.Runtime}</span>
-                <span className="genre">{movie.Genre}</span>
+                <span className="rating">{movie.rated}</span>
+                <span className="runtime">{movie.runtime}</span>
+                <span className="genre">{movie.genre}</span>
                 <span className="released">
-                  {movie.Released} ({movie.Country})
+                  {movie.Released} ({movie.country})
                 </span>
-                {movie.Language !== 'N/A' && (
-                  <span className="language">{movie.Language}</span>
+                {movie.language !== 'N/A' && (
+                  <span className="language">{movie.language}</span>
                 )}
               </div>
               <div className="content">
                 <div className="poster">
                   <img
-                    src={movie.Poster}
+                    src={movie.poster}
                     onError={(e) => {
                       e.target.onerror = null;
                       e.target.src = filmPlacholder;
                     }}
-                    alt={`${movie.Title} poster`}
+                    alt={`${movie.title} poster`}
                   />
                   <div className="ratings">{getRatings()}</div>
                 </div>
                 <div className="about">
-                  <p className="plot">{movie.Plot}</p>
+                  <p className="plot">{movie.plot}</p>
 
                   <div className="credits">
                     <p className="production">
                       <strong>Production: </strong>
-                      {movie.Production}
+                      {movie.production}
                     </p>
                     <p className="director">
                       <strong>Director: </strong>
-                      {movie.Director}
+                      {movie.director}
                     </p>
                     <p className="writer">
                       <strong>Writer: </strong>
-                      {movie.Writer}
+                      {movie.writer}
                     </p>
                     <p className="stars">
                       <strong>Stars: </strong>
-                      {movie.Actors}
+                      {movie.actors}
                     </p>
                   </div>
                 </div>

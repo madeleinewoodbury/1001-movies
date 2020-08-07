@@ -49,10 +49,10 @@ const MoviesState = (props) => {
     }
   };
 
-  const getMovie = async (movieId) => {
+  const getMovie = async (id) => {
     clearMovie();
     try {
-      const res = await axios.get(`${api}/movies/${movieId}`);
+      const res = await axios.get(`${api}/movies/${id}`);
       dispatch({
         type: GET_MOVIE,
         payload: res.data.movie,

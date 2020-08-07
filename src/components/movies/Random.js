@@ -41,7 +41,7 @@ const Random = () => {
             }}
             alt={`${movie.title} poster`}
           />
-          <Link to={`/movies/${movie.movieId}`}>{movie.title}</Link>
+          <Link to={`/movies/${movie._id}`}>{movie.title}</Link>
           <span>{movie.year}</span>
         </div>
       )}
