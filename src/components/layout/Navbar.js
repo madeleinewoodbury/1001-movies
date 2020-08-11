@@ -38,7 +38,7 @@ const Navbar = () => {
         <NavLink to="/random">Random</NavLink>
       </li>
       <li>
-        <NavLink to="/login">Sign In</NavLink>
+        <NavLink to="/login"><i className="fas fa-sign-in-alt"></i> <span className="hide-sm">Sign In</span></NavLink>
       </li>
     </ul>
   );
@@ -46,7 +46,7 @@ const Navbar = () => {
     <nav className="navbar">
       <Link to="/" className="brand">
         <i className="fas fa-film"></i>
-        1001 Movies
+        <span className="hide-xs">1001 Movies</span>
       </Link>
       {isAuthenticated ? authLinks : guestLinks}
     </nav>
