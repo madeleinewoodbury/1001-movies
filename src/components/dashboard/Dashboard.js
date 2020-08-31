@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useContext, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
-import MovieContext from '../../context/movies/moviesContext';
 import MovieCard from '../movies/MovieCard';
 
 const Dashboard = () => {
   const authContext = useContext(AuthContext);
-  const movieContext = useContext(MovieContext);
   const { isAuthenticated, user } = authContext;
 
   if (!isAuthenticated) {

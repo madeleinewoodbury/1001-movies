@@ -3,6 +3,7 @@
   --secondary-color: #0030ce;
   --dark-color: #3f3d34;
   --light-color: #f4f4f4;
+  --dark-light-color: #bebdbd;
   --danger-color: #c52031;
   --success-color: #28a745;
 }
@@ -306,6 +307,48 @@ button {
   border-bottom: solid 15px transparent;
 }
 
+.pagination {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem 2rem;
+}
+
+.pagination .page-numbers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pagination .page-numbers .page {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  color: var(--dark-light-color);
+  cursor: pointer;
+}
+
+.pagination .page-numbers .page:hover {
+  color: var(--primary-color);
+}
+
+.pagination .page-numbers .page.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.pagination .btn-container {
+  margin: 1rem 0;
+}
+
+.pagination .btn-container .btn.disabled {
+  opacity: 0.6;
+}
+
+.pagination .btn-container .btn.disabled:hover {
+  opacity: 0.6;
+  color: black;
+}
+
 /* Movie */
 .movie {
   margin-top: 1rem;
@@ -407,7 +450,6 @@ button {
     width: 100%;
     padding: 0;
   }
-
 }
 
 @media screen and (max-width: 1000px) {
@@ -431,17 +473,16 @@ button {
   }
 }
 
-
 @media screen and (max-width: 700px) {
   .navbar {
     padding: 0.25rem 1rem;
   }
-  
+
   .navbar .brand i {
     margin-right: 0.5rem;
     font-size: 1.4rem;
   }
-  
+
   .navbar a,
   .navbar li {
     font-size: 1.3rem;
@@ -457,7 +498,7 @@ button {
 
   .movie-card {
     width: 174px;
-}
+  }
 }
 
 @media screen and (max-width: 600px) {

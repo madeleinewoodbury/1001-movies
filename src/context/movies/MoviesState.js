@@ -13,6 +13,8 @@ const MoviesState = (props) => {
     loading: true,
     error: null,
     message: null,
+    pages: 0,
+    moviesPerPage: 50,
   };
 
   const [state, dispatch] = useReducer(MoviesReducer, initialState);
@@ -79,6 +81,7 @@ const MoviesState = (props) => {
         movie = getRandom();
         if (
           watched.filter(
+            // eslint-disable-next-line
             (watchedMovie) => watchedMovie.movieId === movie.movieId
           ).length === 0
         ) {
@@ -102,6 +105,8 @@ const MoviesState = (props) => {
         loading: state.loading,
         error: state.error,
         message: state.message,
+        pages: state.pages,
+        moviesPerPage: state.moviesPerPage,
         getMovies,
         searchMovies,
         getMovie,

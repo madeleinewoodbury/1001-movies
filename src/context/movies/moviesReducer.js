@@ -7,6 +7,7 @@ export default (state, action) => {
       return {
         ...state,
         movies: payload,
+        pages: Math.trunc(payload.length / state.moviesPerPage + 1),
         loading: false,
       };
     case GET_MOVIE:

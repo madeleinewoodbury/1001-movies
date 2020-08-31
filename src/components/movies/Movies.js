@@ -3,23 +3,41 @@ import MoviesContext from '../../context/movies/moviesContext';
 import AuthContext from '../../context/auth/authContext';
 import SearchForm from './SearchForm';
 import MovieCard from './MovieCard';
+import Pagination from '../layout/Pagination';
 
 const Movies = () => {
   const moviesContext = useContext(MoviesContext);
   const authContext = useContext(AuthContext);
-  const { getMovies, searchMovies, movies, sortMovies } = moviesContext;
+  const {
+    getMovies,
+    searchMovies,
+    movies,
+    sortMovies,
+    pages,
+    moviesPerPage,
+  } = moviesContext;
   const { isAuthenticated, user, updateWatched } = authContext;
+  const [moviesOnPage, setMoviesOnPage] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    getMovies();
+    if (movies.length > 0) {
+      // Update pages
+      let sliceIndex =
+        currentPage === 0 ? currentPage : currentPage * moviesPerPage;
+      let moviesSlice = movies.slice(sliceIndex, sliceIndex + moviesPerPage);
+      setMoviesOnPage(moviesSlice);
+    } else {
+      getMovies();
+    }
+
     window.addEventListener('scroll', handleScroll);
 
     return function cleanup() {
       window.removeEventListener('scroll', handleScroll);
       console.log('cleanup');
     };
-    // eslint-disable-next-line
-  }, []);
+  }, [currentPage, getMovies, moviesPerPage, movies]);
 
   const [showScroll, setShowScroll] = useState(false);
 
@@ -53,6 +71,22 @@ const Movies = () => {
     window.scrollTo(0, 0);
   };
 
+  const nextPage = () => {
+    currentPage === pages - 1
+      ? setCurrentPage(0)
+      : setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    currentPage === 0
+      ? setCurrentPage(pages - 1)
+      : setCurrentPage(currentPage - 1);
+  };
+
+  const setPage = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <Fragment>
       <SearchForm
@@ -60,7 +94,7 @@ const Movies = () => {
         handleSortMovies={handleSortMovies}
       />
       <div className="movies" onScrollCapture={(e) => console.log('hey')}>
-        {movies.map((movie) => (
+        {moviesOnPage.map((movie) => (
           <MovieCard
             key={movie._id}
             movie={movie}
@@ -77,6 +111,13 @@ const Movies = () => {
         <i className="fas fa-arrow-circle-up"></i>
         <span>Back to top</span>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        pages={pages}
+        nextPage={nextPage}
+        prevPage={prevPage}
+        setPage={setPage}
+      />
     </Fragment>
   );
 };
