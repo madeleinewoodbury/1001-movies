@@ -38,7 +38,10 @@ const Navbar = () => {
         <NavLink to="/random">Random</NavLink>
       </li>
       <li>
-        <NavLink to="/login"><i className="fas fa-sign-in-alt"></i> <span className="hide-sm">Sign In</span></NavLink>
+        <NavLink to="/login">
+          <i className="fas fa-user"></i>{' '}
+          <span className="hide-sm">Sign In</span>
+        </NavLink>
       </li>
     </ul>
   );

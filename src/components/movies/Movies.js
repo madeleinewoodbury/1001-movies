@@ -4,6 +4,7 @@ import AuthContext from '../../context/auth/authContext';
 import SearchForm from './SearchForm';
 import MovieCard from './MovieCard';
 import Pagination from '../layout/Pagination';
+import Spinner from '../layout/Spinner';
 
 const Movies = () => {
   const moviesContext = useContext(MoviesContext);
@@ -15,6 +16,7 @@ const Movies = () => {
     sortMovies,
     pages,
     moviesPerPage,
+    loading,
   } = moviesContext;
   const { isAuthenticated, user, updateWatched } = authContext;
   const [moviesOnPage, setMoviesOnPage] = useState([]);
@@ -87,7 +89,9 @@ const Movies = () => {
     setCurrentPage(page);
   };
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <SearchForm
         handleSearch={handleSearch}

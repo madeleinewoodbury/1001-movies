@@ -5,6 +5,7 @@ import tomato from '../../img/tomato.png';
 import imdb from '../../img/imdb-logo-transparent.png';
 import metacritic from '../../img/metacritic.png';
 import filmPlacholder from '../../img/film-placeholder.png';
+import Spinner from '../layout/Spinner';
 
 const Movie = ({ match }) => {
   const moviesContext = useContext(MoviesContext);
@@ -59,7 +60,9 @@ const Movie = ({ match }) => {
 
   return (
     <div className="movie">
-      {!loading && (
+      {loading ? (
+        <Spinner />
+      ) : (
         <Fragment>
           {movie !== null && (
             <Fragment>

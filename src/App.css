@@ -45,8 +45,12 @@ img {
   padding: 0 2rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .page-container {
-  margin-top: 2rem;
+  margin: 2rem auto;
   max-width: 1000px;
 }
 
@@ -450,9 +454,18 @@ button {
     width: 100%;
     padding: 0;
   }
+
+  .scroll {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
 }
 
 @media screen and (max-width: 1000px) {
+  .page-container {
+    margin: 2rem;
+  }
   .movies {
     grid-template-columns: repeat(4, 1fr);
     max-width: 780px;
@@ -460,6 +473,10 @@ button {
 
   .movie-card {
     width: 175px;
+  }
+
+  .movie {
+    margin: 1rem 2rem;
   }
 }
 
@@ -499,6 +516,10 @@ button {
   .movie-card {
     width: 174px;
   }
+
+  .hide-md {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -516,6 +537,13 @@ button {
 }
 
 @media screen and (max-width: 500px) {
+  .navbar a,
+  .navbar li {
+    font-size: 1.2rem;
+    padding: 0.16rem;
+    margin: 0 0.2rem;
+  }
+
   .movies {
     display: flex;
     flex-wrap: wrap;
