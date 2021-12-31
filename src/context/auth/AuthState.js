@@ -11,7 +11,7 @@ import {
   UPDATE_WATCHED,
 } from '../types';
 
-const api = 'http://localhost:5000/api/v1';
+const api = 'http://localhost:5300/api/v1';
 
 const AuthState = (props) => {
   const initialState = {

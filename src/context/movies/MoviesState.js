@@ -4,7 +4,7 @@ import MoviesContext from './moviesContext';
 import MoviesReducer from './moviesReducer';
 import { GET_MOVIES, GET_MOVIE, CLEAR_MOVIE } from '../types';
 
-const api = 'http://localhost:5000/api/v1';
+const api = 'http://localhost:5300/api/v1';
 
 const MoviesState = (props) => {
   const initialState = {
