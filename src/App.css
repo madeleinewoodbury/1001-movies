@@ -49,6 +49,14 @@ img {
   text-align: center;
 }
 
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-primary:hover {
+  color: var(--secondary-color);
+}
+
 .page-container {
   margin: 2rem auto;
   max-width: 1000px;

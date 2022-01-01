@@ -11,3 +11,4 @@ export const LOGOUT = 'LOGOUT';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
+export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';

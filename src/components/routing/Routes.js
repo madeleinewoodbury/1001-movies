@@ -8,6 +8,8 @@ import Movies from '../movies/Movies';
 import Movie from '../movies/Movie';
 import Random from '../movies/Random';
 import AddMovie from '../admin/AddMovie';
+import ForgotPassword from '../auth/ForgotPassword';
+import ResetPassword from '../auth/ResetPassword';
 
 const Routes = () => {
   return (
@@ -22,6 +24,12 @@ const Routes = () => {
           <Route exact path='/movies/:id' component={Movie} />
           <Route exact path='/random' component={Random} />
           <Route exact path='/addmovie' component={AddMovie} />
+          <Route exact path='/forgotpassword' component={ForgotPassword} />
+          <Route
+            exact
+            path='/resetpassword/:resettoken'
+            component={ResetPassword}
+          />
         </Switch>
       </div>
     </Router>

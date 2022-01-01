@@ -6,6 +6,8 @@ import {
   REGISTER_SUCCESS,
   UPDATE_WATCHED,
   CLEAR_ERRORS,
+  CLEAR_MESSAGE,
+  FORGOT_PASSWORD,
 } from '../types';
 
 export default (state, action) => {
@@ -32,6 +34,16 @@ export default (state, action) => {
       return {
         ...state,
         error: null,
+      };
+    case CLEAR_MESSAGE:
+      return {
+        ...state,
+        message: null,
+      };
+    case FORGOT_PASSWORD:
+      return {
+        ...state,
+        message: payload,
       };
     case AUTH_ERROR:
     case LOGOUT:

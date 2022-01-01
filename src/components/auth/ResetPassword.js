@@ -1,15 +1,11 @@
 import React, { useState, useContext } from 'react';
 import AuthContext from '../../context/auth/authContext';
-import { Link, Redirect } from 'react-router-dom';
-import Alert from '../layout/Alert';
+import { Redirect } from 'react-router-dom';
 
-const Login = () => {
+const ResetPassword = ({ match }) => {
   const authContext = useContext(AuthContext);
-  const { login, isAuthenticated, error } = authContext;
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  const { resetPassword, isAuthenticated } = authContext;
+  const [formData, setFormData] = useState({ password: '', password2: '' });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,7 +13,11 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(e);
-    login(formData);
+    if (formData.password !== formData.password2) {
+      alert('Passwords must match');
+    } else {
+      resetPassword(formData, match.params.resettoken);
+    }
   };
 
   if (isAuthenticated) {
@@ -26,19 +26,8 @@ const Login = () => {
 
   return (
     <div className='auth-form'>
-      {error && <Alert msg={error} type='danger' />}
-      <h1>Sign In</h1>
+      <h1>Forgot Password</h1>
       <form className='form' onSubmit={(e) => handleSubmit(e)}>
-        <div className='form-group'>
-          <input
-            type='email'
-            placeholder='Email'
-            name='email'
-            value={formData.email}
-            onChange={(e) => handleChange(e)}
-            required
-          />
-        </div>
         <div className='form-group'>
           <input
             type='password'
@@ -50,16 +39,21 @@ const Login = () => {
             required
           />
         </div>
-        <input type='submit' className='btn' value='Sign In' />
+        <div className='form-group'>
+          <input
+            type='password'
+            placeholder='Confirm Password'
+            name='password2'
+            value={formData.password2}
+            onChange={(e) => handleChange(e)}
+            minLength={6}
+            required
+          />
+        </div>
+        <input type='submit' className='btn' value='Send Email' />
       </form>
-      <p>
-        Don't have an account yet? <Link to='/register'>Sign Up here!</Link>
-      </p>
-      <Link to='/forgotpassword' className='text-primary'>
-        Forgot password
-      </Link>
     </div>
   );
 };
 
-export default Login;
+export default ResetPassword;
