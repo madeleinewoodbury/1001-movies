@@ -9,6 +9,7 @@ import {
   REGISTER_SUCCESS,
   LOGOUT,
   UPDATE_WATCHED,
+  CLEAR_ERRORS,
 } from '../types';
 
 const api = 'http://localhost:5300/api/v1';
@@ -59,8 +60,14 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: AUTH_ERROR,
-        payload: 'Invalid Credentials',
+        payload: err.response.data.errors[0].msg,
       });
+
+      setTimeout(() => {
+        dispatch({
+          type: CLEAR_ERRORS,
+        });
+      }, 5000);
     }
   };
 
@@ -82,7 +89,14 @@ const AuthState = (props) => {
     } catch (err) {
       dispatch({
         type: AUTH_ERROR,
+        payload: err.response.data.errors[0].msg,
       });
+
+      setTimeout(() => {
+        dispatch({
+          type: 'CLEAR_ERRORS',
+        });
+      }, 5000);
     }
   };
 

@@ -5,6 +5,7 @@ import {
   LOGOUT,
   REGISTER_SUCCESS,
   UPDATE_WATCHED,
+  CLEAR_ERRORS,
 } from '../types';
 
 export default (state, action) => {
@@ -26,6 +27,11 @@ export default (state, action) => {
         ...payload,
         isAuthenticated: true,
         loading: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
       };
     case AUTH_ERROR:
     case LOGOUT:

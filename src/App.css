@@ -54,6 +54,23 @@ img {
   max-width: 1000px;
 }
 
+.alert {
+  width: 100%;
+  display: flex;
+  padding: 0.8rem;
+  opacity: 0.9;
+}
+
+.alert-danger {
+  background-color: var(--danger-color);
+  color: #fff;
+}
+
+.alert-success {
+  background-color: var(--success-color);
+  color: #fff;
+}
+
 .btn {
   display: inline-block;
   background: var(--primary-color);

@@ -2,13 +2,14 @@ import React, { useState, useContext } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import MoviesContext from '../../context/movies/moviesContext';
 import { Redirect } from 'react-router-dom';
+import Alert from '../layout/Alert';
 
 const AddMovie = ({ history }) => {
   const authContext = useContext(AuthContext);
   const moviesContext = useContext(MoviesContext);
 
   const { user, isAuthenticated } = authContext;
-  const { addMovie } = moviesContext;
+  const { addMovie, error, message } = moviesContext;
   const [formData, setFormData] = useState({ movieId: '' });
 
   const handleSubmit = (e) => {
@@ -22,6 +23,8 @@ const AddMovie = ({ history }) => {
 
   return (
     <div className='auth-form'>
+      {error && <Alert msg={error} type='danger' />}
+      {message && <Alert msg={message} type='success' />}
       <h1>Add Movie to Database</h1>
       <form className='form' onSubmit={(e) => handleSubmit(e)}>
         <div className='form-group'>
