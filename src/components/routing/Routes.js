@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from '../layout/Navbar';
+import About from '../about/About';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
 import Dashboard from '../dashboard/Dashboard';
@@ -17,6 +18,8 @@ const Routes = () => {
       <Navbar />
       <div className='container'>
         <Switch>
+          <Route exact path='/' component={Movies} />
+          <Route exact path='/about' component={About} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
           <Route exact path='/dashboard' component={Dashboard} />

@@ -79,6 +79,10 @@ img {
   color: #fff;
 }
 
+.btn-container {
+  margin-top: 1rem;
+}
+
 .btn {
   display: inline-block;
   background: var(--primary-color);
@@ -92,9 +96,18 @@ img {
   outline: none;
 }
 
+.btn-light {
+  background: var(--light-color);
+}
+
 .btn:hover {
   opacity: 0.9;
   color: white;
+}
+
+.btn-light:hover {
+  background: var(--dark-light-color);
+  color: black;
 }
 
 .admin-btn {
@@ -483,6 +496,14 @@ button {
   margin-top: 1rem;
 }
 
+.show-md {
+  display: none;
+}
+
+.show-sm {
+  display: none;
+}
+
 @media screen and (max-width: 1200px) {
   .container {
     width: 100%;
@@ -524,7 +545,7 @@ button {
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   .navbar {
     padding: 0.25rem 1rem;
   }
@@ -554,6 +575,10 @@ button {
   .hide-md {
     display: none;
   }
+
+  .show-md {
+    display: initial;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -567,6 +592,10 @@ button {
 
   .hide-sm {
     display: none;
+  }
+
+  .show-sm {
+    display: initial;
   }
 }
 

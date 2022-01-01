@@ -20,7 +20,7 @@ const Dashboard = () => {
         <Fragment>
           {user.role === 'admin' && (
             <div className='admin-btn'>
-              <Link to='/addmovie' className='btn'>
+              <Link to='/addmovie' className='btn btn-light'>
                 Add movie
               </Link>
             </div>
@@ -29,7 +29,11 @@ const Dashboard = () => {
           <p className='lead'>
             You have watched {user.watched.length} out of 1001 movies
           </p>
-
+          <div className='btn-container'>
+            <Link to='/' className='btn'>
+              The movies
+            </Link>
+          </div>
           <div className='movies'>
             {user.watched.map((movie, id) => (
               <MovieCard key={id} movie={movie} />
