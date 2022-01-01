@@ -7,19 +7,21 @@ import Dashboard from '../dashboard/Dashboard';
 import Movies from '../movies/Movies';
 import Movie from '../movies/Movie';
 import Random from '../movies/Random';
+import AddMovie from '../admin/AddMovie';
 
 const Routes = () => {
   return (
     <Router>
       <Navbar />
-      <div className="container">
+      <div className='container'>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/movies" component={Movies} />
-          <Route exact path="/movies/:id" component={Movie} />
-          <Route exact path="/random" component={Random} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/dashboard' component={Dashboard} />
+          <Route exact path='/movies' component={Movies} />
+          <Route exact path='/movies/:id' component={Movie} />
+          <Route exact path='/random' component={Random} />
+          <Route exact path='/addmovie' component={AddMovie} />
         </Switch>
       </div>
     </Router>

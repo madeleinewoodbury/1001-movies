@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import MoviesContext from './moviesContext';
 import MoviesReducer from './moviesReducer';
-import { GET_MOVIES, GET_MOVIE, CLEAR_MOVIE } from '../types';
+import { GET_MOVIES, GET_MOVIE, ADD_MOVIE, CLEAR_MOVIE } from '../types';
 
 const api = 'http://localhost:5300/api/v1';
 
@@ -18,6 +18,26 @@ const MoviesState = (props) => {
   };
 
   const [state, dispatch] = useReducer(MoviesReducer, initialState);
+
+  const addMovie = async (formData, history) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': localStorage.token,
+      },
+    };
+
+    try {
+      const res = await axios.post(`${api}/movies`, formData, config);
+      dispatch({
+        type: ADD_MOVIE,
+        payload: res.data.movie,
+      });
+    } catch (err) {
+      console.log('Something went wrong');
+    }
+    history.push('/dashboard');
+  };
 
   const getMovies = async () => {
     try {
@@ -112,6 +132,7 @@ const MoviesState = (props) => {
         getMovie,
         sortMovies,
         getRandomMovie,
+        addMovie,
         clearMovie,
       }}
     >

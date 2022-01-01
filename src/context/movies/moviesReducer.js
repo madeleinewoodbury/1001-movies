@@ -1,4 +1,4 @@
-import { GET_MOVIES, GET_MOVIE, CLEAR_MOVIE } from '../types';
+import { GET_MOVIES, GET_MOVIE, CLEAR_MOVIE, ADD_MOVIE } from '../types';
 
 export default (state, action) => {
   const { type, payload } = action;
@@ -17,9 +17,11 @@ export default (state, action) => {
         loading: false,
       };
     case CLEAR_MOVIE:
+    case ADD_MOVIE:
       return {
         ...state,
         movie: null,
+        movies: [],
         loading: false,
       };
     default:
