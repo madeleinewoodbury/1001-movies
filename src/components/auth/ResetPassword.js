@@ -50,7 +50,7 @@ const ResetPassword = ({ match }) => {
             required
           />
         </div>
-        <input type='submit' className='btn' value='Send Email' />
+        <input type='submit' className='btn' value='Save Password' />
       </form>
     </div>
   );
