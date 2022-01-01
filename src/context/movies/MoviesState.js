@@ -12,7 +12,8 @@ import {
   CLEAR_MESSAGE,
 } from '../types';
 
-const api = 'http://localhost:5300/api/v1';
+// const api = 'http://localhost:5300/api/v1';
+const api = 'https://api-1001-movies.herokuapp.com/api/v1';
 
 const MoviesState = (props) => {
   const initialState = {

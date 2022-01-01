@@ -14,7 +14,8 @@ import {
   FORGOT_PASSWORD,
 } from '../types';
 
-const api = 'http://localhost:5300/api/v1';
+// const api = 'http://localhost:5300/api/v1';
+const api = 'https://api-1001-movies.herokuapp.com/api/v1';
 
 const AuthState = (props) => {
   const initialState = {
@@ -106,16 +107,12 @@ const AuthState = (props) => {
   const updateWatched = async (movieId) => {
     const config = {
       headers: {
-        'x-auth-token': state.token,
+        'x-auth-token': localStorage.getItem('token'),
       },
     };
     try {
-      const res = await axios.get(`${api}/movies/users/${movieId}`, config);
+      await axios.get(`${api}/movies/users/${movieId}`, config);
       loadUser();
-      dispatch({
-        type: UPDATE_WATCHED,
-        payload: res.data,
-      });
     } catch (err) {
       console.log('Something went wrong');
     }
@@ -159,8 +156,6 @@ const AuthState = (props) => {
         'Content-Type': 'application/json',
       },
     };
-
-    // const body = JSON
 
     try {
       const res = await axios.put(
